@@ -8,15 +8,24 @@ To use the script, you need to have installed [Python 3](https://www.python.org/
 from a terminal, you can type the following:
 
     python3 ./src/trello2mdtable.py inputfile.json
-    
-This will generate a file `inputfile.md`, containing a section for each list, and subsections for
-each cards. 
+
+This will generate a file `inputfile.md`, containing a section for
+each list containing a table with four columns (customized for product
+management): Feature (the card title), Description, Drivers (the card
+labels), Product Manager (the card owners). Each row in the table
+represents one card preserved in the order of the list.
+
+Convert the markdown table to HTML or Word using these commands:
+
+    pandoc -s -t html inputfile.md > inputfile.html
+    pandoc -s -t docx inputfile.md > inputfile.docx
+
+The resulting file can then be opened and copy/pasted as formatted text
+into a wiki or other document as needed.
 
 Markdown used inside cards is preserved, except that section headings on cards are converted down to
 lower subsections to keep the logical structure (although, this is currently only done for
 [Atx-style headers](http://johnmacfarlane.net/pandoc/README.html#atx-style-headers)).
-
-The generated table has four columns (customized for product management): Feature (the card title), Description, Drivers (the card labels), Product Manager (the card owners).  It will produce one table per trello column with a section heading for it.
 
 There currently following arguments are supported:
 
